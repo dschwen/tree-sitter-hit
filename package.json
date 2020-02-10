@@ -1,0 +1,17 @@
+{
+  "name": "tree-sitter-hit",
+  "version": "0.0.1",
+  "description": "tree-sitter parser for the MOOSE hit syntax",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/tree-sitter test"
+  },
+  "author": "Daniel Schwen",
+  "license": "LGPL",
+  "dependencies": {
+    "nan": "^2.14.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.16.4"
+  }
+}
