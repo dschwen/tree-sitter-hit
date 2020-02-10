@@ -22,6 +22,30 @@ test = 'x + y'
   (parameter_definition
     (parameter_name) (parameter_value (string))))
 
+======================================
+Global variable (double quoted string)
+======================================
+
+test = "x + y"
+
+---
+
+(source_file
+  (parameter_definition
+    (parameter_name) (parameter_value (string))))
+
+===============================
+Global variable (quotes nested)
+===============================
+
+test = "he's the bee's knees"
+
+---
+
+(source_file
+  (parameter_definition
+    (parameter_name) (parameter_value (string))))
+
 ==================================
 Global variable (multiline string)
 ==================================

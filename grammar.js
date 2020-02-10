@@ -25,17 +25,21 @@ module.exports = grammar({
 
     top_block_head : $ => seq('[', $.block_path, ']'),
 
-    block_path : $ => /[A-Za-z/\.]+/,
+    block_path : $ => /[a-zA-Z0-9_./:<>+\-]+/,
 
     parameter_name : $ => /[a-z]+/,
     parameter_value : $ => $.string,
 
     string : $ =>
-        choice(/[^\s\']+/,
+        choice(/[^\s\'\"]+/,
                seq('\'',
-                   repeat(choice(token.immediate(prec(PREC.STRING, /[^']+/)),
+                   repeat(choice(token.immediate(prec(PREC.STRING, /[^\']+/)),
                                  $.escape_sequence)),
-                   '\'')),
+                   '\''),
+               seq('"',
+                   repeat(choice(token.immediate(prec(PREC.STRING, /[^\"]+/)),
+                                 $.escape_sequence)),
+                   '"')),
     escape_sequence : $ => token.immediate(
         seq('\\', choice(/[^xu0-7]/, /[0-7]{1,3}/, /x[0-9a-fA-F]{2}/,
                          /u[0-9a-fA-F]{4}/, /u{[0-9a-fA-F]+}/))),
