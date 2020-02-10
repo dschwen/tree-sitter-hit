@@ -16,21 +16,17 @@ module.exports = grammar({
 
     parameter_definition : $ => seq($.parameter_name, '=', $.parameter_value),
 
-    block : $ => seq($.block_head, repeat($._sub_definition), $._block_foot),
+    top_block : $ => seq($._block_head, repeat($._sub_definition), '[]'),
+    block : $ => seq($._block_head, repeat($._sub_definition), $._block_foot),
 
-    top_block : $ => seq($.block_head, repeat($._sub_definition), '[]'),
-
-    block_head : $ => seq('[', $.block_path, ']'),
+    _block_head : $ => seq('[', $.block_path, ']'),
     _block_foot : $ => choice('[]', '[../]'),
 
-    top_block_head : $ => seq('[', $.block_path, ']'),
+    block_path : $ => $._path,
+    parameter_name : $ => $._path,
+    parameter_value : $ => $._string,
 
-    block_path : $ => /[a-zA-Z0-9_./:<>+\-]+/,
-
-    parameter_name : $ => /[a-z]+/,
-    parameter_value : $ => $.string,
-
-    string : $ =>
+    _string : $ =>
         choice(/[^\s\'\"]+/,
                seq('\'',
                    repeat(choice(token.immediate(prec(PREC.STRING, /[^\']+/)),
@@ -43,6 +39,8 @@ module.exports = grammar({
     escape_sequence : $ => token.immediate(
         seq('\\', choice(/[^xu0-7]/, /[0-7]{1,3}/, /x[0-9a-fA-F]{2}/,
                          /u[0-9a-fA-F]{4}/, /u{[0-9a-fA-F]+}/))),
+
+    _path : $ => /[a-zA-Z0-9_./:<>+\-]+/,
 
     _comment : $ => token(prec(PREC.COMMENT, seq('#', /.*/)))
   }

@@ -8,7 +8,7 @@ test = 3
 
 (source_file
   (parameter_definition
-    (parameter_name) (parameter_value (string))))
+    (parameter_name) (parameter_value)))
 
 ===============================
 Global variable (quoted string)
@@ -20,7 +20,7 @@ test = 'x + y'
 
 (source_file
   (parameter_definition
-    (parameter_name) (parameter_value (string))))
+    (parameter_name) (parameter_value)))
 
 ======================================
 Global variable (double quoted string)
@@ -32,7 +32,7 @@ test = "x + y"
 
 (source_file
   (parameter_definition
-    (parameter_name) (parameter_value (string))))
+    (parameter_name) (parameter_value)))
 
 ===============================
 Global variable (quotes nested)
@@ -44,11 +44,11 @@ test = "he's the bee's knees"
 
 (source_file
   (parameter_definition
-    (parameter_name) (parameter_value (string))))
+    (parameter_name) (parameter_value)))
 
-==================================
-Global variable (multiline string)
-==================================
+===================================
+Global variable (multi-line string)
+===================================
 
 test = '11  12
         21  22'
@@ -57,7 +57,7 @@ test = '11  12
 
 (source_file
   (parameter_definition
-    (parameter_name) (parameter_value (string))))
+    (parameter_name) (parameter_value)))
 
 ===============================
 Top level block with parameters
@@ -72,13 +72,13 @@ Top level block with parameters
 
 (source_file
   (top_block
-    (block_head (block_path))
-    (parameter_definition (parameter_name) (parameter_value (string)))
-    (parameter_definition (parameter_name) (parameter_value (string)))))
+    (block_path)
+    (parameter_definition (parameter_name) (parameter_value))
+    (parameter_definition (parameter_name) (parameter_value))))
 
-==============
-Subblock (old)
-==============
+===============
+Sub-block (old)
+===============
 
 [first]
   [./second]
@@ -89,17 +89,17 @@ Subblock (old)
 
 (source_file
   (top_block
-    (block_head (block_path))
+    (block_path)
     (block
-      (block_head (block_path))
+      (block_path)
     )
   )
 )
 
 
-==============
-Subblock (new)
-==============
+===============
+Sub-block (new)
+===============
 
 [first]
   [second]
@@ -110,9 +110,9 @@ Subblock (new)
 
 (source_file
   (top_block
-    (block_head (block_path))
+    (block_path)
       (block
-        (block_head (block_path))
+        (block_path)
       )
   )
 )
@@ -129,9 +129,29 @@ Subblock (invalid)
 
 (source_file
   (top_block
-    (block_head (block_path))
-    (block (block_head (block_path)))
+    (block_path)
+    (block (block_path))
       (MISSING "[]")))
+
+=============================
+Sub-block and parameter paths
+=============================
+
+[first/second]
+  [third]
+    fourth/fifth = true
+  []
+[]
+
+---
+
+(source_file
+  (top_block
+    (block_path)
+    (block
+      (block_path)
+      (parameter_definition (parameter_name) (parameter_value))
+    )))
 
 ====================================
 Two top level blocks with parameters
@@ -151,14 +171,14 @@ Two top level blocks with parameters
 
 (source_file
   (top_block
-    (block_head (block_path))
-    (parameter_definition (parameter_name) (parameter_value (string)))
-    (parameter_definition (parameter_name) (parameter_value (string)))
+    (block_path)
+    (parameter_definition (parameter_name) (parameter_value))
+    (parameter_definition (parameter_name) (parameter_value))
   )
   (top_block
-    (block_head (block_path))
-    (parameter_definition (parameter_name) (parameter_value (string)))
-    (parameter_definition (parameter_name) (parameter_value (string)))
+    (block_path)
+    (parameter_definition (parameter_name) (parameter_value))
+    (parameter_definition (parameter_name) (parameter_value))
   )
 )
 
@@ -172,7 +192,7 @@ test = 'x + y' # a cool expression
 
 (source_file
 (parameter_definition
-  (parameter_name) (parameter_value (string))))
+  (parameter_name) (parameter_value)))
 
 ===========================
 Nested blocks with comments
@@ -199,13 +219,13 @@ Nested blocks with comments
 
 (source_file
   (top_block
-    (block_head (block_path))
-    (parameter_definition (parameter_name) (parameter_value (string)))
-    (parameter_definition (parameter_name) (parameter_value (string)))
+    (block_path)
+    (parameter_definition (parameter_name) (parameter_value))
+    (parameter_definition (parameter_name) (parameter_value))
   )
   (top_block
-    (block_head (block_path))
-    (parameter_definition (parameter_name) (parameter_value (string)))
-    (parameter_definition (parameter_name) (parameter_value (string)))
+    (block_path)
+    (parameter_definition (parameter_name) (parameter_value))
+    (parameter_definition (parameter_name) (parameter_value))
   )
 )
