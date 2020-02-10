@@ -5,7 +5,8 @@
   "repository": "github:dschwen/tree-sitter-hit",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/tree-sitter test"
+    "test": "./node_modules/.bin/tree-sitter test",
+    "build": "./node_modules/.bin/tree-sitter generate"
   },
   "author": "Daniel Schwen <daniel@schwen.de> (https://www.schwen.de)",
   "license": "LGPL",

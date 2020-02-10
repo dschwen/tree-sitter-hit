@@ -1,0 +1,187 @@
+========================
+Global variable (number)
+========================
+
+test = 3
+
+---
+
+(source_file
+  (parameter_definition
+    (parameter_name) (parameter_value (string))))
+
+===============================
+Global variable (quoted string)
+===============================
+
+test = 'x + y'
+
+---
+
+(source_file
+  (parameter_definition
+    (parameter_name) (parameter_value (string))))
+
+==================================
+Global variable (multiline string)
+==================================
+
+test = '11  12
+        21  22'
+
+---
+
+(source_file
+  (parameter_definition
+    (parameter_name) (parameter_value (string))))
+
+===============================
+Top level block with parameters
+===============================
+
+[first]
+  one = 1
+  two =2
+[]
+
+---
+
+(source_file
+  (top_block
+    (block_head (block_path))
+    (parameter_definition (parameter_name) (parameter_value (string)))
+    (parameter_definition (parameter_name) (parameter_value (string)))))
+
+==============
+Subblock (old)
+==============
+
+[first]
+  [./second]
+  [../]
+[]
+
+---
+
+(source_file
+  (top_block
+    (block_head (block_path))
+    (block
+      (block_head (block_path))
+    )
+  )
+)
+
+
+==============
+Subblock (new)
+==============
+
+[first]
+  [second]
+  []
+[]
+
+---
+
+(source_file
+  (top_block
+    (block_head (block_path))
+      (block
+        (block_head (block_path))
+      )
+  )
+)
+
+==================
+Subblock (invalid)
+==================
+
+[first]
+  [second]
+[]
+
+---
+
+(source_file
+  (top_block
+    (block_head (block_path))
+    (block (block_head (block_path)))
+      (MISSING "[]")))
+
+====================================
+Two top level blocks with parameters
+====================================
+
+[first]
+  one = 1
+  two =2
+[]
+
+[second]
+  three = 1
+  four =2
+[]
+
+---
+
+(source_file
+  (top_block
+    (block_head (block_path))
+    (parameter_definition (parameter_name) (parameter_value (string)))
+    (parameter_definition (parameter_name) (parameter_value (string)))
+  )
+  (top_block
+    (block_head (block_path))
+    (parameter_definition (parameter_name) (parameter_value (string)))
+    (parameter_definition (parameter_name) (parameter_value (string)))
+  )
+)
+
+==================================
+Comment after parameter/value pair
+==================================
+
+test = 'x + y' # a cool expression
+
+---
+
+(source_file
+(parameter_definition
+  (parameter_name) (parameter_value (string))))
+
+===========================
+Nested blocks with comments
+===========================
+
+#
+# Header
+#
+
+# a block
+[first]
+  one = 1
+  two =2
+  # end of block
+[]
+
+# next block
+[second] # comment on name
+  three= 1
+  four =2    # could be 'five'
+[]
+
+---
+
+(source_file
+  (top_block
+    (block_head (block_path))
+    (parameter_definition (parameter_name) (parameter_value (string)))
+    (parameter_definition (parameter_name) (parameter_value (string)))
+  )
+  (top_block
+    (block_head (block_path))
+    (parameter_definition (parameter_name) (parameter_value (string)))
+    (parameter_definition (parameter_name) (parameter_value (string)))
+  )
+)
