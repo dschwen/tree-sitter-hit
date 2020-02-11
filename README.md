@@ -1,5 +1,6 @@
 # tree-sitter-hit
 
+[![Badge: npm version badge for package `tree-sitter-hit`](https://img.shields.io/npm/v/tree-sitter-hit.svg)](https://www.npmjs.com/package/tree-sitter-hit)
 [![Build Status](https://travis-ci.org/dschwen/tree-sitter-hit.svg?branch=master)](https://travis-ci.org/dschwen/tree-sitter-hit)
 
 Grammar for incrementally parsing the [MOOSE](https://mooseframework.org) HIT
