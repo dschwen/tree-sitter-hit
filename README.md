@@ -1,5 +1,7 @@
 # tree-sitter-hit
 
+[![Build Status](https://travis-ci.org/dschwen/tree-sitter-hit.svg?branch=master)](https://travis-ci.org/dschwen/tree-sitter-hit)
+
 Grammar for incrementally parsing the [MOOSE](https://mooseframework.org) HIT
 (hierarchical input text) file format.
 
