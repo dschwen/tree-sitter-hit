@@ -182,6 +182,50 @@ Two top level blocks with parameters
   )
 )
 
+==============================================
+Two top level blocks with incomplete parameter
+==============================================
+
+[first]
+  one =
+[]
+
+[second]
+  three = 1
+[]
+
+---
+
+(source_file
+  (top_block
+    (block_path)
+    (parameter_definition (parameter_name) (parameter_value (MISSING "_string_token1")))
+  )
+  (top_block
+    (block_path)
+    (parameter_definition (parameter_name) (parameter_value))
+  )
+)
+
+============================================
+Incomplete parameter followed by a parameter
+============================================
+
+[first]
+  one =
+  two = three
+[]
+
+---
+
+(source_file
+  (top_block
+    (block_path)
+    (parameter_definition (parameter_name) (parameter_value))
+    (parameter_definition (parameter_name  (MISSING _path)) (parameter_value))
+  )
+)
+
 ==================================
 Comment after parameter/value pair
 ==================================

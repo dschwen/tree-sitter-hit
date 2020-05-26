@@ -27,7 +27,7 @@ module.exports = grammar({
     parameter_value : $ => $._string,
 
     _string : $ =>
-        choice(/[^\s\'\"]+/,
+        choice(/[^\s\'\"\[]+/,
                seq('\'',
                    repeat(choice(token.immediate(prec(PREC.STRING, /[^\']+/)),
                                  $.escape_sequence)),

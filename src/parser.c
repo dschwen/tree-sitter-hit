@@ -272,7 +272,8 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == '\n' ||
           lookahead == '\r' ||
           lookahead == ' ') SKIP(1)
-      if (lookahead != 0) ADVANCE(23);
+      if (lookahead != 0 &&
+          lookahead != '[') ADVANCE(23);
       END_STATE();
     case 2:
       if (lookahead == '"') ADVANCE(37);
@@ -408,7 +409,8 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead != '\r' &&
           lookahead != ' ' &&
           lookahead != '"' &&
-          lookahead != '\'') ADVANCE(23);
+          lookahead != '\'' &&
+          lookahead != '[') ADVANCE(23);
       END_STATE();
     case 24:
       ACCEPT_TOKEN(anon_sym_SQUOTE);
@@ -625,7 +627,8 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == '\r' ||
           lookahead == ' ' ||
           lookahead == '"' ||
-          lookahead == '\'') ADVANCE(55);
+          lookahead == '\'' ||
+          lookahead == '[') ADVANCE(55);
       if (lookahead != 0 &&
           lookahead != '\n') ADVANCE(54);
       END_STATE();

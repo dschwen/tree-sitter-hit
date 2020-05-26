@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-hit",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "tree-sitter parser for the MOOSE hit syntax",
   "keywords": [
     "MOOSE",
