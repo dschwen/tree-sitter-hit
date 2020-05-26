@@ -1,8 +1,15 @@
 {
   "name": "tree-sitter-hit",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "tree-sitter parser for the MOOSE hit syntax",
-  "keywords": ["MOOSE", "tree-sitter", "hit", "input", "parser", "grammar"],
+  "keywords": [
+    "MOOSE",
+    "tree-sitter",
+    "hit",
+    "input",
+    "parser",
+    "grammar"
+  ],
   "repository": "github:dschwen/tree-sitter-hit",
   "main": "index.js",
   "scripts": {
@@ -15,6 +22,6 @@
     "nan": "^2.14.0"
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.16.4"
+    "tree-sitter-cli": "^0.16.7"
   }
 }
