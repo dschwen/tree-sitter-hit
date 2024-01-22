@@ -273,3 +273,63 @@ Nested blocks with comments
     (parameter_definition (parameter_name) (parameter_value))
   )
 )
+
+==================================
+Include directive no quotes
+==================================
+
+!include util.i
+
+---
+
+(source_file
+(include_directive
+  (include_path)))
+
+==================================
+Include directive quotes
+==================================
+
+!include 'util.i'
+
+---
+
+(source_file
+(include_directive
+  (include_path)))
+
+==================================
+Top nested include
+==================================
+
+[top]
+  !include 'util.i'
+[]
+
+---
+
+(source_file
+  (top_block
+    (block_path)
+    (include_directive
+      (include_path))))
+
+==================================
+Doubly nested include
+==================================
+
+[top]
+  [sub]
+    !include 'util.i'
+  []
+[]
+
+---
+
+(source_file
+  (top_block
+    (block_path)
+    (block
+      (block_path)
+      (include_directive
+        (include_path)))))

@@ -7,13 +7,13 @@ module.exports = grammar({
   name : 'hit',
   extras : $ => [$._comment, /[\s]/],
 
-  rules : {
-    // TODO: add the actual grammar rules
+  rules: {
     source_file : $ => repeat($._definition),
 
-    _definition : $ => choice($.parameter_definition, $.top_block),
-    _sub_definition : $ => choice($.parameter_definition, $.block),
+    _definition: $ => choice($.parameter_definition, $.top_block, $.include_directive),
+    _sub_definition: $ => choice($.parameter_definition, $.block, $.include_directive),
 
+    include_directive: $ => seq('!include', $.include_path),
     parameter_definition : $ => seq($.parameter_name, '=', $.parameter_value),
 
     top_block : $ => seq($._block_head, repeat($._sub_definition), '[]'),
@@ -25,6 +25,8 @@ module.exports = grammar({
     block_path : $ => $._path,
     parameter_name : $ => $._path,
     parameter_value : $ => $._string,
+
+    include_path: $ => $._string,
 
     _string : $ =>
         choice(/[^\s\'\"\[]+/,

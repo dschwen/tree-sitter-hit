@@ -18,6 +18,10 @@
         {
           "type": "SYMBOL",
           "name": "top_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "include_directive"
         }
       ]
     },
@@ -31,6 +35,23 @@
         {
           "type": "SYMBOL",
           "name": "block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "include_directive"
+        }
+      ]
+    },
+    "include_directive": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "!include"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "include_path"
         }
       ]
     },
@@ -130,6 +151,10 @@
       "name": "_path"
     },
     "parameter_value": {
+      "type": "SYMBOL",
+      "name": "_string"
+    },
+    "include_path": {
       "type": "SYMBOL",
       "name": "_string"
     },
@@ -253,7 +278,7 @@
     },
     "_path": {
       "type": "PATTERN",
-      "value": "[a-zA-Z0-9_.\\/:<>+\\-]+"
+      "value": "[a-zA-Z0-9_./:<>+\\-]+"
     },
     "_comment": {
       "type": "TOKEN",
@@ -287,6 +312,7 @@
     }
   ],
   "conflicts": [],
+  "precedences": [],
   "externals": [],
   "inline": [],
   "supertypes": []
